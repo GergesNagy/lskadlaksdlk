@@ -32,4 +32,4 @@ kubectl apply -f "add file name here"
 ```
 
 ## result image
-![alt text](https://github.com/EslamHamada2/Terraform-GKE-deployment/blob/main/result.png?raw=true)
+![alt text](https://github.com/GergesNagy/project-gke/blob/main/screen-shoot/result.png?raw=true)

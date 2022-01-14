@@ -1,72 +1,35 @@
-# DevOps Challenge Demo Code:
+# SIMPLE PYTHON APP DEPLOYMENT USING TERRAFORM&GCP.
 
-This application will be used as a demo for DevOps Challenges.
+A simple python web-app using [redis](https://redis.io/) for caching, Deployed on a full GKE cluster using [Terraform](https://www.terraform.io/)
 
-You should fork/clone this repository to use as a basis for the challenge.
+## Infrastructure
 
-## Demo application
+A VPC containing 2 subnets, Nat gate-way, Private VM instance and a private standard GKE cluster.
 
-### Requirements
+## gke components
 
-#### System
+Two deployment files to deploy the python application and redis service
 
-- GNU/Linux
-- `python` >= 3.7
-- `pip` >= 9.0
-- `redis` >= 5.0
+## Installation
 
-`>=` means any version of the package, above or equal to the specified version.
-
-#### Application
-
-- `redis-py`
-- `tornado`
-
-You can find them in the `requirements.txt` file and their required version number.
-You can install them by using:
+- Use the package manager [pip](https://pypi.org/project/pip/) to install the dependencies into your Docker file.
 
 ```bash
-pip install -r requirements.txt
+RUN pip install -r requirements.txt
 ```
-
-### :rocket: Starting the Application
-
-The application uses several environment variables.
-You can find them all and their default values in the `.env` file. They need to be avaiable at runtime. Here is an overview about the environment variables:
-
-- `ENVIRONMENT` the environment in which the application is run. Likely `PROD` for production or `DEV` for development context.
-- `HOST` the hostname on which the application is running. Locally it is `localhost`.
-- `PORT` is the port on which the application is running.
-- `REDIS_HOST` is the hostname on which redis is running. Locally it is `localhost`.
-- `REDIS_PORT` is the port on which to communicate with redis. Normally it is `6379`.
-- `REDIS_DB` which redis db should be used. Normally it is `0`.
-
-Application can be found in `hello.py` file. You can start the application by using:
+- Apply the infrastructure on GCP using Terraform.
 
 ```bash
-export $(cat .env | xargs) && python hello.py
+terraform init 
+terraform plan
+terraform apply
 ```
 
-Although you don't have to export the environment variables that way. :wink:
-
-### Static files
-
-- Static files are located in `static/` folder.
-- Templates are located in `template/` folder.
-
-### Executing Tests
-
-Tests can be found in `tests/test.py` file.
-You can run the tests by using:
+- SSH into the private instance and start deploying your gke cluster
 
 ```bash
-python tests/test.py
+kubectl apply -f "add file name here"
 ```
 
-## License
-
-Copyright (c) 2019 by the Tradebyte Software GmbH.<br/>
-`DevOps-Challenge` is free software, and may be redistributed under the terms specified in the [LICENSE] file.
-
-[license]: /LICENSE
-
+## result image
+![alt text](https://github.com/EslamHamada2/Terraform-GKE-deployment/blob/main/result.png?raw=true)
